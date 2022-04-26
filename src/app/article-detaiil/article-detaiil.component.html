@@ -1,0 +1,15 @@
+<div class="container page">
+  <a  class="preview-link" >
+    <h1>{{responses[0]?.subject.title}}</h1>
+    <p>{{responses[0]?.subject.subtitle}}</p>
+  </a>
+  <div class="article-preview" *ngFor="let response of responses">
+    {{response.content}}
+    <div class="pull-xs-right">
+      <button class="btn btn-sm btn-outline-primary"(click)="onIncr(response.id)">
+        <i class="ion-heart"></i>
+        {{response.nbLike}}
+      </button>
+    </div>
+  </div>
+</div>

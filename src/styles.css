@@ -1,0 +1,32 @@
+
+:root {
+    --primary-color: #104069;
+  } 
+.home-page .banner{
+    background-color:var(--primary-color) ;
+}
+
+.nav-pills.outline-active .nav-link.active {
+    background: transparent;
+    border-bottom: 2px solid var(--primary-color) !important;
+    color: var(--primary-color)!important;
+}
+
+.navbar-light .navbar-brand{
+    color: var(--primary-color)!important;
+}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+footer{
+    position: fixed;
+}
+
+a {
+    color: var(--primary-color);
+}
+
+body{
+    color: var(--primary-color);
+}
+

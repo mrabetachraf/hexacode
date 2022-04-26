@@ -1,0 +1,16 @@
+<form [formGroup]="subjectForm" (ngSubmit)="addSubject()">
+    <div class="form-group">
+      <label for="Title">Title</label>
+      <input type="text" class="form-control"  formControlName="title" id="Title" aria-describedby="Title" placeholder="Enter Title">
+      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    </div>
+    <div class="form-group">
+      <label for="subTitle">Sub Title</label>
+      <input type="text" class="form-control" formControlName="subtitle" id="subTitle" placeholder="Sub Title">
+    </div>
+    <div class="form-group">
+        <label for="userId">User ID</label>
+        <input type="text" class="form-control" formControlName="userId" id="userId" placeholder="User ID">
+      </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
