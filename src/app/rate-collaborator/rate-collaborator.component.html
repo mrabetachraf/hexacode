@@ -1,0 +1,29 @@
+
+<p>please rate collaborators </p>
+<table class="mat-elevation-z8" style="width: 500px ; padding-top: 50px; padding-left: 90px; " >
+
+    <thead style="background-color: rgb(110, 169, 196);">
+
+        <th>id</th>
+        <th>nom</th>
+        <th>rate</th>
+
+
+
+    </thead>
+    <tbody>
+
+        <tr *ngFor='let o of listCollaborators '>
+            <td>{{o.id}}</td>
+            <td>{{o.nom}}</td>
+            <td><ngb-rating [(rate)]="o.rate">
+                <ng-template let-fill="fill" let-index="index">
+                  <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+                </ng-template>
+              </ngb-rating>
+            </td>
+
+
+
+    </tbody>
+</table>

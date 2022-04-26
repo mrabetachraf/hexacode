@@ -1,0 +1,37 @@
+<h3>Create Offer</h3>
+<div [hidden]="submitted" style="width: 400px;">
+  <form (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label >title</label>
+      <input type="text" class="form-control" id="title" required [(ngModel)]="offre.title" name="title">
+    </div>
+
+    <div class="form-group">
+      <label >date</label>
+      <input type="date" class="form-control" id="date" required [(ngModel)]="offre.date" name="date">
+    </div>
+
+    <div class="form-group">
+      <label >description</label>
+      <input type="text" class="form-control" id="description" required [(ngModel)]="offre.description" name="description">
+    </div>
+
+      <div class="form-group">
+        <label >location</label>
+        <input type="text" class="form-control" id="location" required [(ngModel)]="offre.location" name="location">
+      </div>
+
+      <div class="form-group">
+        <label >nbParticipants</label>
+        <input type="number" class="form-control" id="nbParticipants" required [(ngModel)]="offre.nbParticipants" name="nbParticipants">
+      </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
+
+<div [hidden]="!submitted">
+  <h4>You submitted successfully!</h4>
+  <button class="btn btn-success" (click)="newOffer()">Add</button>
+</div>
+

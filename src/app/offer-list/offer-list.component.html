@@ -1,0 +1,34 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h2>Employee List</h2>
+    </div>
+    <div class="panel-body">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>title</th>
+            <th>date</th>
+            <th>description</th>
+            <th>location</th>
+            <th>nbParticipants</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let o of offers | async">
+                <td>{{o.title}}</td>
+                <td>{{o.date}}</td>
+                <td>{{o.description}}</td>
+                <td>{{o.location}}</td>
+                <td>{{o.nbParticipants}}</td>
+            <td><button (click)="deleteOffer(offer.id)" class="btn btn-danger">Delete</button>
+                <button (click)=" updateOffer(offer.id)" class="btn btn-info" style="margin-left: 10px">Update</button>
+                <button (click)=" offerDetails(offer.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  

@@ -1,0 +1,61 @@
+
+ <div class="home-page">
+ <div class="banner">
+    <div class="container">
+      <h1 class="logo-font">Hato</h1>
+      <p>A place to share your <i>Angular</i> knowledge.</p>
+    </div>
+  </div>
+
+
+<div class="container page">
+    <div class="row">
+
+      <div class="col-md-9">
+        <div class="feed-toggle">
+          <ul class="nav nav-pills outline-active">
+            <li class="nav-item">
+              <a class="nav-link active" [routerLink]="'offer/add'">
+                about offers
+              </a>
+             
+            </li>
+            <li class="nav-item">
+              <a class="nav-link "  [routerLink]="'collaborator/add'" >
+                 about collaborators
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link "  [routerLink]="'collaborator/rate'" >
+                 rate collaborators
+              </a>
+            </li>
+
+          </ul>
+          <button class="btn btn-sm btn-primary" style="float: right;
+           margin-top: -45px;" > Add 
+            <!-- <i class="ion-heart"></i>  -->
+          </button>
+        </div>
+        
+        <!-- <app-offer-list></app-offer-list> -->
+      </div>
+
+      <div class="col-md-3">
+        <div class="sidebar">
+          <p>Popular Tags</p>
+
+          <div class="tag-list">
+            <a *ngFor="let tag of tags"
+               class="tag-default tag-pill">
+               {{ tag }}
+            </a>
+          </div>
+
+    
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

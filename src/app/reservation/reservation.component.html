@@ -1,0 +1,19 @@
+<h1>Enter the following details</h1>
+<table>
+  <tr >
+    <td><span>id</span></td>
+    <td><input type="number" [(ngModel)]="reservation.id" name="id"></td>
+  </tr>
+  <tr>
+    <td><span>nom</span></td>
+    <td><input type="text" [(ngModel)]="reservation.nom" name="nom"></td></tr>
+  <tr>
+    <td><span>mail</span></td>
+    <td><input type="text" [(ngModel)]="reservation.mail" name="mail"></td>
+  </tr>
+  
+  <tr>
+    <td></td>
+    <td><button (click)="onSubmit(reservation.id)">Submit</button></td>
+  </tr>
+</table>
