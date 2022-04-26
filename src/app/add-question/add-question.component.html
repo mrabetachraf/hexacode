@@ -1,0 +1,18 @@
+<div class="card addQuestion" >
+  <h2 style="margin-bottom: 30px;">Create a Question</h2>
+  <br><br>
+  <form (ngSubmit)="addQuestion()">
+    <div class="form-group row">
+      <label for="name" class="col-sm-3 col-form-label">Question</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control" [(ngModel)]="question.question" name="name">
+      </div>
+    </div>
+
+    <div class="btnContent">
+      <button type="submit" class="btn btn-danger" style="margin-right: 5px" (click)="cancel()">
+      Cancel</button>
+      <button type="submit" class="btn btn-primary" style="margin-right: 5px">Valider</button>
+    </div>
+  </form>
+</div>
