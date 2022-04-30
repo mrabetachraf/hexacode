@@ -19,7 +19,7 @@ export class QuestionContentComponent implements OnInit {
               private responseService: ResponseService) {
     this.route.params.subscribe(
       params => {
-        
+        this.id = this.route.snapshot.params.id;
         this.questionService.getQuestions(this.id).subscribe(questions => {
           this.questions = questions;
         });
@@ -28,5 +28,10 @@ export class QuestionContentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+  findResponse(id: number) {
+  this.responseService.getResponses(id).subscribe(res => {
+    this.responses = res;
+  })
   }
 }

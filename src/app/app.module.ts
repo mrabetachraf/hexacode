@@ -21,6 +21,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import { AddLevelComponent } from './level/add-level/add-level.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { ResultComponent } from './result/result.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     AddThemeComponent,
     LevelComponent,
     AddLevelComponent,
+    ResultComponent,
   ],
   imports: [
     BrowserModule,
