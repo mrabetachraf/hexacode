@@ -17,6 +17,9 @@ import { SignupComponent } from "./auth/signup/signup.component";
 import { SigninComponent } from "./auth/signin/signin.component";
 import { UserComponent } from 'src/app/user-group/user/user.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ForgetPasswordComponent } from './forget-password/forget-password.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { ProfileInfoComponent } from './profile-info/profile-info.component';
 
 @NgModule({
  declarations: [
@@ -28,7 +31,10 @@ import { ProfileComponent } from './profile/profile.component';
   SigninComponent,
   UserComponent,
   PageNotFoundComponent,
-  ProfileComponent
+  ProfileComponent,
+  ForgetPasswordComponent,
+  ResetPasswordComponent,
+  ProfileInfoComponent
  ],
  imports: [
   BrowserModule,

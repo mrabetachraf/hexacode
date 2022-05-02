@@ -44,9 +44,17 @@ export class SignupComponent implements OnInit {
       console.log(res);
       // localStorage.setItem('token', res.token);
       localStorage.setItem("user", JSON.stringify(res));
-      this.router.navigate(["/"]).then(() => {
-        window.location.reload();
-      });
+      if (res.statusCode === 200) {
+        // prompt('Success')
+        // prompt("login now")
+        // alert("login now")
+        }
+        else{
+          console.log("it's not printing succcess msg ");
+        }
+      // this.router.navigate(["/signin"]).then(() => {
+      //   window.location.reload();
+      // });
     });
   }
 }

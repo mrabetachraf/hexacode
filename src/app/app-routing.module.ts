@@ -6,6 +6,8 @@ import { SigninComponent } from "./auth/signin/signin.component";
 import { SignupComponent } from "./auth/signup/signup.component";
 import { UserComponent } from "./user-group/user/user.component"
 import { ProfileComponent } from "./profile/profile.component";
+import { ForgetPasswordComponent } from "./forget-password/forget-password.component";
+import { ResetPasswordComponent } from "./reset-password/reset-password.component";
 
 const routes: Routes = [
     { path: "user-group/user", component: UserComponent },
@@ -14,6 +16,8 @@ const routes: Routes = [
     { path: "profile", component: ProfileComponent },
     { path: "signin", component: SigninComponent },
     { path: "signup", component: SignupComponent },
+    { path: "forget_password", component: ForgetPasswordComponent },
+    { path: "reset_password", component: ResetPasswordComponent },
     { path: "**", component: PageNotFoundComponent }
 
 ];

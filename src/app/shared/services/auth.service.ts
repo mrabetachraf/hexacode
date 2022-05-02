@@ -25,14 +25,28 @@ export class AuthService {
   .set('password', user.password);
 
 
-
-
-  
   let httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' }),
   };
     return this.httpService.post<any>(this.REST_API_SERVER + '/login',payload,httpOptions);
   }
+
+  forgetpassword(user) {
+
+
+    return this.httpService.post<any>(this.REST_API_SERVER + '/forgot_password?username='+user.username,user);
+  }
+
+  resetPassword(user,url) {
+
+
+    return this.httpService.post<any>(this.REST_API_SERVER + url,user.password);
+  }
+  // resetPassword(user,url) {
+
+
+  //   return this.httpService.post<any>(this.REST_API_SERVER + '/reset_password?token='+'7YPIWA12vvaZC5MnqJ6XWnJoQtFSNc',user.password);
+  // }
 
   loggedIn() {
     return !!localStorage.getItem('token');

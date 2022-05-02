@@ -11,6 +11,7 @@ import { UserService } from "src/app/shared/services/user.service"
 })
 export class ProfileComponent implements OnInit {
 user : User;
+test:string;
 formGroup: FormGroup;
 constructor(private formBuilder: FormBuilder,
   private userService: UserService
@@ -19,6 +20,7 @@ constructor(private formBuilder: FormBuilder,
   ngOnInit(): void {
     this.getUserByName().subscribe(user => {
       this.user = user;
+      this.test="test value" ;
   });
 
   }
