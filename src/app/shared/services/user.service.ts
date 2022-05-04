@@ -7,6 +7,7 @@ import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs"
 import { map } from "rxjs/operators";
 import { User } from "src/app/shared/models/user.model";
+import { Badge } from "../models/badge";
 
 @Injectable({
     providedIn: "root"
@@ -26,9 +27,16 @@ export class UserService {
         return this.httpService.post<User>(this.REST_API_SERVER, user);
     }
     
-    updateUser(id: number, value: User) {
-        return this.httpService.put(this.REST_API_SERVER + id, value);
+    updateUser(value) {
+        return this.httpService.put<User>(this.REST_API_SERVER +"user/update", value);
     }
+    addBadgeToUser(name: string): Observable<Badge> {
+        return this.httpService.post<any>(this.REST_API_SERVER + "badge/addBadgeToUser/" + name,name);
+    }
+    // addBadgeToUser(name: string): Observable<Badge> {
+    //     return this.httpService.post<any>("http://localhost:8090/badge/addBadgeToUser/b6",name);
+    // }
+
     
     deleteUser(id: number): Observable<User> {
         return this.httpService.delete<User>(this.REST_API_SERVER + id);

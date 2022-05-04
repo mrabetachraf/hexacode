@@ -65,7 +65,7 @@ export class UserComponent implements OnInit {
     }
     
     updateUser(form: FormGroup) {
-        this.userService.updateUser(form.value.id, form.value).subscribe(user => this.ngOnInit());
+        this.userService.updateUser( form.value).subscribe(user => this.ngOnInit());
     }
     
     deleteUser(form: FormGroup) {

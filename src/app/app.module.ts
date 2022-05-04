@@ -20,6 +20,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { ForgetPasswordComponent } from './forget-password/forget-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { ProfileInfoComponent } from './profile-info/profile-info.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
  declarations: [
@@ -34,7 +35,8 @@ import { ProfileInfoComponent } from './profile-info/profile-info.component';
   ProfileComponent,
   ForgetPasswordComponent,
   ResetPasswordComponent,
-  ProfileInfoComponent
+  ProfileInfoComponent,
+  EditProfileComponent
  ],
  imports: [
   BrowserModule,

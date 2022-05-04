@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit,Input, Output, EventEmitter } from '@angular/core';
 import { User } from '../shared/models/user.model';
 
 @Component({
@@ -7,19 +7,19 @@ import { User } from '../shared/models/user.model';
   styleUrls: ['./profile-info.component.css']
 })
 export class ProfileInfoComponent implements OnInit {
+  @Output() updated2 = new EventEmitter<boolean>();
 
   constructor() { }
   @Input () user:User;
-  @Input() lastname: string;
-  @Input() username: string;
-  @Input() email: string;
-  @Input() education: string;
-  @Input() location: string;
-  @Input() contact_info: string;
+
    
   
   ngOnInit(): void {
     
+  }
+update2(value:boolean) {
+    this.updated2.emit(value)
+;
   }
 
 }
