@@ -10,7 +10,6 @@ import { ResponseService } from '../service/response.service';
   styleUrls: ['./add-question.component.css']
 })
 export class AddQuestionComponent implements OnInit {
-// response: Response = {} as Response;
 question: Question = {} as Question;
 correct: any = {};
 
