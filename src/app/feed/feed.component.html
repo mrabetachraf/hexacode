@@ -1,0 +1,24 @@
+<div class="home-page">
+    <div class="banner">
+    <div class="container">
+      <h1 class="logo-font">HATO</h1>
+      <p>A place to share your <i></i> </p>
+      <img [src]="cheminImage" style="height: 30px; width:50px">
+    </div>
+    
+    </div>
+</div>
+<body>
+<div class="inner-main-body p-2 p-sm-3 collapse forum-content show">
+<div class="card mb-2" *ngFor="let p of pub">
+  <div class="card-body p-2 p-sm-3">
+    <div class="media forum-item">
+      <p class="text-secondary" >
+        {{p.content}}
+    </p>
+    <p class="text-muted"><a href="javascript:void(0)"></a> replied <span class="text-secondary font-weight-bold"></span></p>
+</div>
+</div>
+</div>
+</div>
+</body>

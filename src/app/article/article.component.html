@@ -1,0 +1,123 @@
+<div class="row">
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn btn-round btn-sm btn-success" (click)="open(mymodal1)">Add new Article </button>
+            <br><br>
+            <ng-template #mymodal1 let-modal1>
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modal-basic-title" >Add new Article</h4>
+                    <button type="button" class="close" aria-label="Close" (click)="modal1.dismiss('Cross click')">
+                        <span aria-hidden="true" (click)="cancel()">×</span>
+                    </button>
+    
+                </div>
+                <div class="center">
+                <form>
+                    <div class="row" class="col-md-6">
+                        <input type="text" placeholder="Article title" [(ngModel)]="article.title"
+                            [ngModelOptions]="{standalone : true}">
+                    </div>
+                    <div class="row" class="col-md-6">
+                        <input type="text" placeholder="subject" [(ngModel)]="article.subject"
+                            [ngModelOptions]="{standalone : true}">
+                    </div>
+                    <div class="row" class="col-md-6">
+                        <input type="text" placeholder="subtitle" [(ngModel)]="article.subtitle"
+                            [ngModelOptions]="{standalone : true}">
+                    </div>
+                    <div class="row" class="col-md-6">
+                        <input type="text" placeholder="content" [(ngModel)]="article.content"
+                            [ngModelOptions]="{standalone : true}">
+                    </div>
+                    <div class="row" class="col-md-6">
+                        <input type="text" placeholder="author" [(ngModel)]="article.author"
+                            [ngModelOptions]="{standalone : true}">
+                    </div>
+                    <div class="row" class="col-md-6">
+                        <input type="text" placeholder="author" [(ngModel)]="article.dep"
+                            [ngModelOptions]="{standalone : true}">
+                    </div>
+                    <br>
+                    <button type="button" class="btn btn-success" (click)="addArticletodep(id,article)" (click)="modal1.close('Save click')">Add</button> 
+                    <button type="button" class="btn btn-info" (click)="modal1.close('Save click')" >Cancel</button>
+                </form>
+            </div>
+            </ng-template>
+            <div class="row">
+                <div class="card" class="text-center">
+                    <table class="table">
+                        <thead style="background-color: rgb(192, 183, 183);">
+                            <th>Title</th>
+                            <th>Subject</th>
+                            <th>Subtitle</th>
+                            <th>Content </th>
+                             <th>Author</th>
+                             <th> Departement</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor='let p of listArticle'>
+                                <td>{{p.title}}</td>
+                                <td>{{p.subject}}</td>
+                                <td>{{p.subtitle}}</td>
+                                <td>{{p.content}}</td>
+                                <td>{{p.author}}</td>
+                                <td> {{p.dep}}</td>
+                                <td><button type="button" class="btn btn-outline-primary"
+                                        (click)="open(mymodal)">edit</button>
+                                    <ng-template #mymodal let-modal>
+                                        <div class="modal-header">
+                                            <h4 class="modal-title" id="modal-basic-title">Edit</h4>
+                                            <button type="button" class="close" aria-label="Close"
+                                                (click)="modal.dismiss('Cross click')">
+                                                <span aria-hidden="true" (click)="cancel()">×</span>
+    
+                                            </button>
+    
+                                        </div>
+                                        <div>
+                                        <form>
+                                            <div class="modal-body">
+    
+                                                <div class="row" class="col-md-5">
+                                                    <label>Title</label>
+                                                    <input type="text" [(ngModel)]="p.title" [ngModelOptions]="{standalone : true}" />
+                                                </div>
+                                                <div class="row" class="col-md-5">
+                                                    <label>Subject</label>
+                                                    <input type="text" [(ngModel)]="p.subject" [ngModelOptions]="{standalone : true}" />
+                                                </div>
+                                                <div class="row" class="col-md-5">
+                                                    <label>Subtitle</label>
+                                                    <input type="text" [(ngModel)]="p.subtitle" [ngModelOptions]="{standalone : true}" />
+                                                </div>
+                                                <div class="row" class="col-md-5">
+                                                    <label>Content</label>
+                                                    <input type="text" [(ngModel)]="p.content" [ngModelOptions]="{standalone : true}" />
+                                                </div>
+                                                <div class="row" class="col-md-5">
+                                                    <label>Author</label>
+                                                    <input type="text" [(ngModel)]="p.author" [ngModelOptions]="{standalone : true}" />
+                                                </div>
+                                            </div>
+    
+                                            <div class="modal-footer">
+    
+                                                <button type="button" class="btn btn-info"
+                                                    (click)="modal.close('Save click')" (click)="cancel()">Cancel</button>
+                                                <button class="btn btn-success"(click)="editArticle(p)" (click)="modal.close('Save click')">Validate</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    </ng-template>
+                                    <button type="button" class="btn btn-outline-danger"
+                                        (click)="deleteArticle(p.id)">delete</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
