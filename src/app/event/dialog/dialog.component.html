@@ -1,0 +1,55 @@
+<h1 mat-dialog-title>Add Event</h1>
+<div mat-dialog-content>
+    <form [formGroup]="eventForm">
+        <mat-form-field appearance="legacy">
+            <mat-label>Title</mat-label>
+            <input matInput formControlName="title" placeholder="Placeholder">
+          </mat-form-field>
+
+          <mat-form-field appearance="legacy">
+            <mat-label>Creator</mat-label>
+            <input matInput formControlName="creator"  placeholder="Placeholder">
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Departement</mat-label>
+            <input matInput formControlName="departement" placeholder="Placeholder">
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>image</mat-label>
+            <input matInput formControlName="image" placeholder="Placeholder">
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+                    <mat-label>Start Date</mat-label>    
+                    <input matInput  formControlName="start_date" [matDatepicker]="picker">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>    
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+                     <mat-label>End Date</mat-label>
+                    <input matInput formControlName="end_date" [matDatepicker]="picker2">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Status</mat-label>
+            <mat-select formControlName="status" placeholder="Status">
+                <mat-option value="PUBLIC">PUBLIC</mat-option>
+                <mat-option value="PRIVATE">PRIVATE</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+          <mat-label>Location</mat-label>
+            <input matInput formControlName="location" placeholder="Placeholder">
+          </mat-form-field>
+          <mat-form-field appearance="legacy">
+            <mat-label>Participants number</mat-label>
+            <input matInput type="number" formControlName="particpants_number" placeholder="Placeholder">
+          </mat-form-field>
+    </form>
+    
+
+</div>
+<div mat-dialog-action [align]="'end'">
+    <button mat-raised-button color="warn" mat-dialog-close>Close</button>
+    <button style="margin-left: 8px;" mat-raised-button color="primary" (click)="addEvent()" mat-dialog-close>{{actionBtn}}</button>
+</div >
