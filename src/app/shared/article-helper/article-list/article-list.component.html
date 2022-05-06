@@ -1,0 +1,28 @@
+<div class="article-preview" *ngFor="let subject of subjects">
+    <app-article-meta [subject]="subject">
+        <div class="pull-xs-right">
+        <button class="btn btn-sm btn-outline-danger" [disabled]="subject.status==false" (click)="onDelete(subject.id)"> Delete
+         <!-- <i class="ion-heart"></i>  -->
+       </button>
+
+
+       <button class="btn btn-sm btn-primary" [disabled]="subject.status==false" (click)="openDialog(subject.id)"> Add Response
+         <!-- <i class="ion-heart"></i>  -->
+       </button>
+       <i *ngIf="subject.status==false" class="ion-checkmark"></i>
+    </div>
+    
+    </app-article-meta>
+  
+    <a  class="preview-link" [routerLink]="['/article', subject.id]">
+      <h1>{{subject.title}}</h1>
+      <p>{{subject.subtitle}}</p>
+      <span>Read more...</span>
+      <ul class="tag-list">
+        <li class="tag-default tag-pill tag-outline">
+          Angular
+        </li>
+      </ul>
+    </a>
+  </div>
+  

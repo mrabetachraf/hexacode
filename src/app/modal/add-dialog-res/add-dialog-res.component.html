@@ -1,0 +1,10 @@
+<form [formGroup]="responseForm" (ngSubmit)="addResponse()">
+    <div class="form-group">
+      <label for="content">Content</label>
+      <input type="text" class="form-control"  formControlName="content" id="content" aria-describedby="content" placeholder="Enter Content">
+      <small id="emailHelp" class="form-text text-muted"></small>
+    </div>
+  
+    <button type="submit" class="btn btn-primary" [mat-dialog-close]="true"
+    >Submit</button>
+  </form>
