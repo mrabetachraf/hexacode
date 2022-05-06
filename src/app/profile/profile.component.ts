@@ -15,6 +15,7 @@ not_updating = true;
 user : User;
 badge: Badge;
 test:string;
+quotient:number
 formGroup: FormGroup;
 constructor(private formBuilder: FormBuilder,
   private userService: UserService
@@ -24,11 +25,13 @@ constructor(private formBuilder: FormBuilder,
     this.not_updating;
     this.getUserByName().subscribe(user => {
       this.user = user;
+      
    
   });
-
+  
   this.getBadge().subscribe(badge => {
     this.badge = badge;
+
     console.log( badge.maxpoints)
     console.log( "the max points are ")
  
