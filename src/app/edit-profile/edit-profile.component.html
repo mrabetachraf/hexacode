@@ -1,0 +1,116 @@
+<div class="card mb-3">
+<div class="card-body">
+<form [formGroup]="formGroup">
+    <div class="form-group">
+        <label for="name">Firstname </label>
+        <input type="text" class="form-control" formControlName="name" id="name"  ngDefaultControl [(ngModel)]="user.name" required
+            minlength="3" maxlength="20" />
+        <div class="alert-danger" *ngIf="formGroup.controls['name'].errors">
+            <div *ngIf="formGroup.controls['name'].errors['required'] && hasError">name is required</div>
+            <div *ngIf="formGroup.controls['name'].errors['minlength'] && hasError">
+                name must be at least 3 characters
+            </div>
+            <div *ngIf="formGroup.controls['name'].errors['maxlength'] && hasError">
+                name must be at most 20 characters
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="lastname">Lastname</label>
+        <input type="text" class="form-control" formControlName="lastname" id="lastname" required ngDefaultControl [(ngModel)]="user.lastname"
+            minlength="3" maxlength="20" />
+        <div class="alert-danger" *ngIf="formGroup.controls['lastname'].errors">
+            <div *ngIf="formGroup.controls['lastname'].errors['required'] && hasError">Lastname is required</div>
+            <div *ngIf="formGroup.controls['lastname'].errors['minlength'] && hasError">
+                Lastname must be at least 3 characters
+            </div>
+            <div *ngIf="formGroup.controls['lastname'].errors['maxlength'] && hasError">
+                Lastname must be at most 20 characters
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" formControlName="email" id="email" required ngDefaultControl [(ngModel)]="user.email"
+            minlength="5" maxlength="50" />
+        <div class="alert-danger" *ngIf="formGroup.controls['email'].errors">
+            <div *ngIf="formGroup.controls['email'].errors['required'] && hasError">Email is required</div>
+            <div *ngIf="formGroup.controls['email'].errors['minlength'] && hasError">
+                Email must be at least 3 characters
+            </div>
+            <div *ngIf="formGroup.controls['email'].errors['maxlength'] && hasError">
+                Email must be at most 20 characters
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" formControlName="username" id="username" required ngDefaultControl [(ngModel)]="user.username"
+            minlength="3" maxlength="20" />
+        <div class="alert-danger" *ngIf="formGroup.controls['username'].errors">
+            <div *ngIf="formGroup.controls['username'].errors['required'] && hasError">Username is required</div>
+            <div *ngIf="formGroup.controls['username'].errors['minlength'] && hasError">
+                Username must be at least 3 characters
+            </div>
+            <div *ngIf="formGroup.controls['username'].errors['maxlength'] && hasError">
+                Username must be at most 20 characters
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="education">Education </label>
+        <input type="education" class="form-control" formControlName="education" id="education" required ngDefaultControl [(ngModel)]="user.education"
+            minlength="6"/>
+        <div class="alert-danger" *ngIf="formGroup.controls['education'].errors">
+            <div *ngIf="formGroup.controls['education'].errors['required']  && hasError">education is required</div>
+            <div *ngIf="formGroup.controls['education'].errors['minlength'] && hasError">
+                education must be at least 6 characters
+            </div>
+        </div>
+    </div>
+    <!-- <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" formControlName="password" id="password" required ngDefaultControl [(ngModel)]="user.password"
+            minlength="6"/>
+        <div class="alert-danger" *ngIf="formGroup.controls['password'].errors">
+            <div *ngIf="formGroup.controls['password'].errors['required']  && hasError">Password is required</div>
+            <div *ngIf="formGroup.controls['password'].errors['minlength'] && hasError">
+                Password must be at least 6 characters
+            </div>
+        </div>
+    </div> -->
+    <div class="form-group">
+        <label for="location">Address </label>
+        <input type="location" class="form-control" formControlName="location" id="location" required ngDefaultControl [(ngModel)]="user.location"
+            minlength="6"/>
+        <div class="alert-danger" *ngIf="formGroup.controls['location'].errors">
+            <div *ngIf="formGroup.controls['location'].errors['required']  && hasError">location is required</div>
+            <div *ngIf="formGroup.controls['location'].errors['minlength'] && hasError">
+                location must be at least 6 characters
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="contact_info">Contact_info </label>
+        <input type="contact_info" class="form-control" formControlName="contact_info" id="contact_info" required ngDefaultControl [(ngModel)]="user.contact_info"
+            minlength="6"/>
+        <div class="alert-danger" *ngIf="formGroup.controls['password'].errors">
+            <div *ngIf="formGroup.controls['contact_info'].errors['required']  && hasError">contact_info is required</div>
+            <div *ngIf="formGroup.controls['contact_info'].errors['minlength'] && hasError">
+                contact_info must be at least 6 characters
+            </div>
+        </div>
+    </div>
+   
+  
+
+    <div class="form-group">
+        <button class="btn btn-info" (click)="edit(formGroup)" (click)="update(true)">Save changes</button>
+    </div>
+
+    <div class="alert alert-warning" *ngIf="hasError">
+        Edit failed!<br />{{ errorMessage }}
+    </div>
+</form>
+</div>
+</div>
