@@ -9,7 +9,7 @@ import { ThemeContentComponent } from './theme-content/theme-content.component';
 import { ThemeComponent } from './theme/theme.component';
 const routes: Routes = [
   { path: '', redirectTo: '/questions', pathMatch: 'full' },
-  { path: 'historiated', component: HistoriqueComponent },
+  { path: 'history', component: HistoriqueComponent },
   {
    path: 'theme', component: ThemeComponent,
    children: [
