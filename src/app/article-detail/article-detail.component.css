@@ -1,0 +1,41 @@
+.example-card {
+    max-width: 1000px;
+  }
+  .example-label {
+    display: table-cell;
+    font-size: 14px;
+    margin-left: 8px;
+    min-width: 120px;
+  }
+  .full{
+      width: 100w;
+      height: 100vh;
+  }
+  .reaction ,tbody,tr{
+  background-color:white;
+  }
+  .button{
+    height:4px;
+    width:4px;
+    margin-left: 8px;
+    font-size: 14px;
+  }
+   
+.align align--center aliagn--wrap reaction-items__container{
+  width:42px;
+  position: relative;
+  width: 50%;
+}
+.example-card{
+  padding: 1rem;
+  width: 1800px;
+  box-shadow: 0 15px 30px 0 rgba(0,0,0,0.11),
+    0 5px 15px 0 rgba(0,0,0,0.08);
+  background-color: #ffffff;
+  border-radius: 0.5rem;
+  
+  border-left: 0 solid #00ff99;
+  transition: border-left 300ms ease-in-out, padding-left 300ms ease-in-out;
+  overflow: hidden;
+  
+}
