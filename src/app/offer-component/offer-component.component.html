@@ -1,3 +1,5 @@
+
+ 
 <nav  class="navbar navbar-light" style="background-color: #e3f2fd;">
   <a [routerLink]="['/login']"></a>
             
@@ -39,6 +41,28 @@
                 <textarea  matInput placeholder="" type="text" class="form-control" id="location" required [(ngModel)]="offer.location" name="location"></textarea>
                 </mat-form-field>
               </div>
+             
+              <!-- Terminal -->
+              <mat-card style="margin-top: 50px;">
+                <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxFlex.xl="100">
+              
+                  <mat-label>localisation</mat-label>
+                  <div fxLayout="row wrap" class="col-gap">
+                    <div fxFlex.xs="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50">
+                      <input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
+                    </div>
+                    <div fxFlex.xs="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50">
+                      <!-- Mapa -->
+                      <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                      </agm-map>
+                      <!-- Final Mapa -->
+                    </div>
+                  </div>
+              
+                </div>
+              
+              </mat-card>
             
               <div class="form-group">
                 <mat-form-field class="example-full-width" appearance="fill">
@@ -94,6 +118,7 @@
   <input matInput  [(ngModel)]="title" placeholder="Ex. ium" #input>
 </mat-form-field>
 
+
      
            <div class="card" class="text-center">
             
@@ -107,11 +132,14 @@
                     <th>date</th>
                     <th>description</th>
                     <th>location</th>
+                    <th>localisation</th>
                     <th>nbParticipants</th>
                     <th>piece jointe</th>
                     <th>action</th>
                   </ng-container>
                 </thead>
+
+
                 <tbody>
                   <ng-container>
                     <tr *ngFor='let o of listOffers| filter: title | paginate :{itemsPerPage:tableSize , currentPage :page , totalItems : count} ; let i index'>
@@ -120,10 +148,13 @@
                       <td>{{o.date}}</td>
                       <td>{{o.description}}</td>
                       <td>{{o.location}}</td>
+                      <td>{{o.localisation}}</td>
                       <td>{{o.nbParticipants}}</td>
-                      <td>{{o.pieceJointe}}</td>
+                      <td>{{shortLink}}</td>
                       <td>
-                        <button type="button" class="btn btn-outline-primary" data-toggle="mymodal" (click)="open(mymodal)">edit</button>
+                        <button mat-icon-button  color="primary" data-toggle="mymodal" (click)="open(mymodal)" >
+                           <mat-icon>edit</mat-icon>
+                           </button>
                         <ng-template #mymodal let-modal>
                           <div class="modal-header">
                             
@@ -161,9 +192,10 @@
                                   <input type="number" class="form-control" id="nbParticipants" required
                                     [(ngModel)]="o.nbParticipants" name="nbParticipants">
                                 </div>
+
                                 <div class="form-group">
-                                  <input class="form-control" type="file" (change)="onChange($event)">
-                                
+                                  <label>piece jointe</label>
+                                  <input class="form-control" type="file" (change)="onChange($event)"   >
                                   <button (click)="onUpload()" class="btn btn-success" required [(ngModel)]="o.pieceJointe" name="pieceJointe">
                                     Upload
                                   </button>
@@ -176,7 +208,9 @@
                                 </div>
                                 </div>
               
-                                <button class="btn btn-success" (click)="editoffer(o)" (click)="modal.close('Save click')">edit</button>
+                                <button mat-icon-button  (click)="editoffer(o)" (click)="modal.close('Save click')" color="primary" >
+                                  <mat-icon>edit</mat-icon> 
+                                </button>
               
                               </div>
                             </form>
@@ -185,7 +219,9 @@
                             <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
                           </div>
                         </ng-template>
-                        <button type="button" class="btn btn-outline-danger" (click)="deleteoffer(o.id)">delete</button>
+                        <button mat-icon-button (click)="deleteoffer(o.id)" color="warn">
+                          <mat-icon>delete</mat-icon> 
+                        </button>
                       </td>
               
                     </tr>
@@ -199,6 +235,9 @@
 
                
            </div>
+           <svg id="clouds" alt="Gray Clouds Background" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
+            <path id="Path_39" data-name="Path 39" d="M2379.709,863.793c10-93-77-171-168-149-52-114-225-105-264,15-75,3-140,59-152,133-30,2.83-66.725,9.829-93.5,26.25-26.771-16.421-63.5-23.42-93.5-26.25-12-74-77-130-152-133-39-120-212-129-264-15-54.084-13.075-106.753,9.173-138.488,48.9-31.734-39.726-84.4-61.974-138.487-48.9-52-114-225-105-264,15a162.027,162.027,0,0,0-103.147,43.044c-30.633-45.365-87.1-72.091-145.206-58.044-52-114-225-105-264,15-75,3-140,59-152,133-53,5-127,23-130,83-2,42,35,72,70,86,49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33,61.112,8.015,113.854-5.72,150.492-29.764a165.62,165.62,0,0,0,110.861-3.236c47,94,178,113,251,33,31.385,4.116,60.563,2.495,86.487-3.311,25.924,5.806,55.1,7.427,86.488,3.311,73,80,204,61,251-33a165.625,165.625,0,0,0,120,0c51,13,108,15,157-5a147.188,147.188,0,0,0,33.5-18.694,147.217,147.217,0,0,0,33.5,18.694c49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33C2446.709,1093.793,2554.709,922.793,2379.709,863.793Z" transform="translate(142.69 -634.312)" fill="#eee"/>
+          </svg>
      </div>
 </div>
 
@@ -216,3 +255,5 @@ nextLabel="next"
 (pageChange)="onTableDataChange($event)"
 >
 </pagination-controls>
+
+

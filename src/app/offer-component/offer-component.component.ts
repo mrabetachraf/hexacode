@@ -6,6 +6,8 @@ import { MatPaginator } from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { GooglePlaceDirective } from 'ngx-google-places-autocomplete';
+import { Address } from '@yuvarajv/ngx-google-places-autocomplete';
 @Component({
   selector: 'app-offer-component',
   templateUrl: './offer-component.component.html',
@@ -23,7 +25,22 @@ export class OfferComponentComponent implements OnInit {
   count : number =0;
   tableSize : number =10;
   tableSizes : any =[5,10,15,20];
+  baseApiUrl = "https://file.io" ;
   
+  
+  
+
+  @ViewChild("placesRef") placesRef !: GooglePlaceDirective;
+
+  options = {
+    types : [],
+    componentRestrictions: { country: 'MX' }
+  };
+
+  title_add:any;
+  latitude:any;
+  longitude:any;
+  zoom:any;
   
 
   // Variable to store shortLink from api response
@@ -36,7 +53,7 @@ export class OfferComponentComponent implements OnInit {
   constructor(private  offerService : OfferService , private modalService: NgbModal) { }
   
   ngOnInit(): void {
-    
+    this.setCurrentLocation();
     this.getAllOffers();
 
     
@@ -47,7 +64,8 @@ export class OfferComponentComponent implements OnInit {
       description: null ,
       location: null,
         nbParticipants: null ,
-        pieceJointe:null
+        pieceJointe:null,
+        localisation : null 
     }
   }
 
@@ -101,9 +119,10 @@ export class OfferComponentComponent implements OnInit {
 
 // OnClick of button Upload
 onUpload() {
+  
     this.loading = !this.loading;
     console.log(this.file);
-
+    
     
 
     this.offerService.upload(this.file).subscribe(
@@ -112,19 +131,20 @@ onUpload() {
 
                 // Short link via api response
                 this.shortLink = event.link;
+                
 
                 this.loading = false; // Flag variable 
             }
             this.getAllOffers();
             this.form =false ;
+           
         }
+        
     );
-
-    this.offerService.addOffer(this.file).subscribe(() => {
-      this.getAllOffers();
-      this.form =false ;
-    });
+    this.shortLink.toString = this.offer.pieceJointe ;
+   
     this.offerService.editoffer(this.file).subscribe();
+    
    
 }
 
@@ -137,6 +157,37 @@ onTableSizeChange(event:any):void{
   this.page=1;
   this.getAllOffers();
 }
+
+// google Maps
+
+public handleAddressChange(address: Address) {
+  // Do some stuff
+  console.log(address);
+  console.log('Latitud : ' + address.geometry.location.lat());
+  console.log('Longitud : ' + address.geometry.location.lng());
+
+  this.latitude = address.geometry.location.lat();
+  this.longitude = address.geometry.location.lng();
+  
+}
+public setCurrentLocation() {
+  if ('geolocation' in navigator) {
+    navigator.geolocation.getCurrentPosition((position) => {
+      this.latitude = position.coords.latitude;
+      this.longitude = position.coords.longitude;
+      this.zoom = 15;
+    })
+  }
+}
+
+
+
+
+
+
+
+
+
 
   
 }

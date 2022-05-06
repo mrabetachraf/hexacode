@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CollaboratorService } from '../collaborator/collaborator.service';
 import { Collaborator } from '../module/collaborator';
 import { Rating } from '../module/rating';
@@ -13,6 +14,7 @@ import { RateService } from './rate.service';
 })
 export class RateCollaboratorComponent implements OnInit {
   listUsers :any;
+  closeResult! :string;
   listCollaborators :any;
   rateList : any;
   collaborator! : Collaborator ;
@@ -21,7 +23,7 @@ export class RateCollaboratorComponent implements OnInit {
  
  form !: FormGroup;
   ctrl = new FormControl(null, Validators.required);
-  constructor ( private  collaboratorService : CollaboratorService  , private rateService : RateService) {
+  constructor ( private  collaboratorService : CollaboratorService  , private rateService : RateService ,private modalService: NgbModal) {
    
     
    }
@@ -65,11 +67,29 @@ export class RateCollaboratorComponent implements OnInit {
     }
   }
 
-  addRating(rating:any, userId:any ,collabId:any){
-    this.rateService.addRating(rating, userId, collabId).subscribe();
+  addRating(rating:any,collabId:any){
+    this.rateService.addRating(rating, collabId).subscribe();
   }
   getAllUsers(){
     this.rateService.GetAllUsers().subscribe(res => this.listUsers=res)
+  }
+
+  open(content:any) {
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
 

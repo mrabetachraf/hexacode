@@ -103,7 +103,9 @@
                       </td>
                         <td>{{o.duree}}</td>
                         <td>
-                          <button type="button" class="btn btn-outline-primary" data-toggle="mymodal" (click)="open(mymodal)">edit</button>
+                          <button mat-icon-button  color="primary"  data-toggle="mymodal" (click)="open(mymodal)">
+                            <mat-icon>edit</mat-icon>
+                          </button>
                           <ng-template #mymodal let-modal>
                             <div class="modal-header">
                               
@@ -151,7 +153,9 @@
                               <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
                             </div>
                           </ng-template>
-                          <button type="button" class="btn btn-outline-danger" (click)="deletecollaborator(o.id)">delete</button>
+                          <button mat-icon-button  color="warn"  (click)="deletecollaborator(o.id)">
+                            <mat-icon>delete</mat-icon>
+                          </button>
                         </td>
                 
                       </tr>

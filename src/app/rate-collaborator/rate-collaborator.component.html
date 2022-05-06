@@ -1,5 +1,54 @@
 
-<p>please rate collaborators </p>
+ <div class="container-fluid">
+  <h1 style="color: darkcyan;">reservation list</h1>
+  <div class="d-flex">
+    <button class="btn btn-info"  (click)="open(mymodal)" > Add rating </button>
+         
+    <ng-template #mymodal let-modal>
+      <div class="modal-header">
+       
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       
+          <form class="example-form">
+          
+            <div class="form-group">
+              <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label> nom</mat-label>
+                <textarea matInput placeholder="" type="text" class="form-control" required [(ngModel)]="collaborator.nom" name="nom"></textarea>
+              </mat-form-field>
+            </div>
+          
+            
+          
+            <div class="form-group">
+              <mat-form-field class="example-full-width" appearance="fill">
+              <mat-label>rate</mat-label>
+              <textarea matInput placeholder=""  type="text" class="form-control" id="stars" required [(ngModel)]="rating.stars"  name="stars"></textarea>
+              </mat-form-field>
+            </div>
+          
+            
+           
+       
+          <br>
+          <tr *ngFor='let o of listCollaborators '>
+          <div style=" padding-left: 30px; ">
+            <button class="btn btn-success" (click)="addRating(rating,o.id) "  (click)="modal.close('Save click')">Add</button>
+          </div>
+        </tr>
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+      </div>
+    </ng-template>
+  </div>
+
+</div>
 <table class="mat-elevation-z8" style="width: 500px ; padding-top: 50px; padding-left: 90px; " >
 
     <thead style="background-color: rgb(110, 169, 196);">

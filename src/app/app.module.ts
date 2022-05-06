@@ -21,6 +21,13 @@ import { UserComponent } from './user/user.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { ReservationComponent } from './reservation/reservation.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import { MapsComponent } from './maps/maps.component';
+import { AgmCoreModule } from '@agm/core';
+import { MatCardModule } from '@angular/material/card';
+import { GooglePlaceModule } from "ngx-google-places-autocomplete";
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -35,6 +42,7 @@ import { ReservationComponent } from './reservation/reservation.component';
     RateCollaboratorComponent,
     UserComponent,
     ReservationComponent,
+    MapsComponent,
   ],
   imports: [
     BrowserModule,  
@@ -46,8 +54,17 @@ import { ReservationComponent } from './reservation/reservation.component';
     MatInputModule,
     NgxPrintModule,
     NgxPaginationModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    MatTabsModule,
+    AgmCoreModule.forRoot({
+      apiKey : 'AIzaSyBqESASMo4QpiNWu20g_qAZ9zoWowfjbHs',
+      libraries : ['places']
+    }),
 
+    MatCardModule,
+    GooglePlaceModule,
+    MatButtonModule,
+    MatIconModule
    
    
   ],

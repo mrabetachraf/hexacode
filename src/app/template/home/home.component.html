@@ -10,18 +10,24 @@
 
 <div class="container page">
     <div class="row">
-
+      
+        
+    
       <div class="col-md-9">
         <div class="feed-toggle">
           <ul class="nav nav-pills outline-active">
-            <li class="nav-item">
-              <a class="nav-link active" [routerLink]="'offer/add'">
+
+
+            <li class="nav-item active" >
+              
+              <button class="nav-link active" routerLinkActive="active" [routerLink]="'offer/add'">
                 about offers
-              </a>
-             
+              </button>
             </li>
+
+
             <li class="nav-item">
-              <a class="nav-link "  [routerLink]="'collaborator/add'" >
+              <a class="nav-link "   routerLinkActive="active" [routerLink]="'collaborator/add'" >
                  about collaborators
               </a>
             </li>
@@ -31,7 +37,14 @@
               </a>
             </li>
 
+            <li class="nav-item">
+              <a class="nav-link "  [routerLink]=" 'reservation/add'" >
+                 reservations
+              </a>
+            </li>
+            <router-outlet></router-outlet>
           </ul>
+       
           <button class="btn btn-sm btn-primary" style="float: right;
            margin-top: -45px;" > Add 
             <!-- <i class="ion-heart"></i>  -->

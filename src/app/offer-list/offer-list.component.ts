@@ -24,7 +24,8 @@ export class OfferListComponent implements OnInit {
       description: null ,
       location: null,
         nbParticipants: null ,
-        pieceJointe:null
+        pieceJointe:null,
+        localisation : null 
     }
     
   }

@@ -9,8 +9,8 @@ export class RateService {
   constructor(private httpClient : HttpClient) { }
 
 
-  addRating(rating:any , userId:any ,collabId:any){
-    return this.httpClient.post(`${this.API_URL}/save-Rating/${userId}/${collabId}`,rating)
+  addRating(rating:any ,collabId:any){
+    return this.httpClient.post(`${this.API_URL}/save-Rating/1/${collabId}`,rating)
   }
   GetAllUsers (){
     return this.httpClient.get(`${this.API_URL}/displayUsers`);

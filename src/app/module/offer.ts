@@ -6,5 +6,6 @@ export class Offer {
 	 location: any;
      nbParticipants: any ;
 	 pieceJointe : any ;
+	 localisation : any ;
 	
 }

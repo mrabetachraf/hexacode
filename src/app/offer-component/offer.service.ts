@@ -10,7 +10,7 @@ import { Offer } from '../module/offer';
 export class OfferService {
   offre !: Offer[] ;
   readonly API_URL = 'http://localhost:8089/SpringMVC/offer';
-  baseApiUrl = "https://file.io"
+  baseApiUrl = "https://file.io" ;
   constructor(private httpClient : HttpClient) { }
 
   getAllOffers() {
@@ -25,23 +25,23 @@ export class OfferService {
   deleteoffer(offerid:any){
     return this.httpClient.delete(`${this.API_URL}/delete-offer/${offerid}`)
   }
-  
+ 
   upload(file:any):Observable<any> {
   
     // Create form data
     const formData = new FormData(); 
-      
+    
     // Store form name as "file" with file data
     formData.append("file", file, file.name);
 
     
     // this.httpClient.post(`${this.API_URL}/add-offer`,file) 
     // this.httpClient.put(`${this.API_URL}/modify-offer`,file)
-
+  
     // Make http post request over api
     // with formData as req
-    return this.httpClient.post(this.baseApiUrl, formData)
-}
+    return this.httpClient.post(this.baseApiUrl ,formData ) ;
+} 
 
 // offreRecherche= [];
 // rechercherParid(id:number):Offer[]{
