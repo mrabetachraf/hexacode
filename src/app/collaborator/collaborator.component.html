@@ -1,0 +1,180 @@
+<nav  class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <a [routerLink]="['/login']"></a>
+          
+    <div class="container-fluid">
+      <h1 style="color: darkcyan;">collaborators list</h1>
+      <div class="d-flex">
+        <button class="btn btn-info"  (click)="open(mymodal)"> Add new collaborator</button>
+             
+        <ng-template #mymodal let-modal>
+          <div class="modal-header">
+           
+            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">
+           
+              <form class="example-form">
+              
+                <div class="form-group">
+                  <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label> name</mat-label>
+                    <textarea matInput placeholder="" type="text" class="form-control" id="nom" required [(ngModel)]="collaborator.nom" name="nom"></textarea>
+                  </mat-form-field>
+                </div>
+              
+                
+              
+                <div class="form-group">
+                  <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>offer</mat-label>
+                  <textarea matInput placeholder=""  type="text" class="form-control" id="offre" required [(ngModel)]="collaborator.offre"  name="offre"></textarea>
+                  </mat-form-field>
+                </div>
+              
+                <div class="form-group">
+                  <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>rate</mat-label>
+                 
+                  <input  matInput placeholder="" type="number" class="form-control" id="rate" required [(ngModel)]="collaborator.rate" name="rate">
+                  </mat-form-field>
+                </div>
+              
+                <div class="form-group">
+                  <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label>duration</mat-label>
+                  <textarea matInput placeholder="" type="text" class="form-control" id="duree" required [(ngModel)]="collaborator.duree" name="duree"></textarea>
+                  </mat-form-field>
+                </div>
+               
+
+              <br>
+              <div style=" padding-left: 30px; ">
+                <button class="btn btn-success" (click)="addcollaborator(collaborator)" (click)="modal.close('Save click')">Add</button>
+              </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+          </div>
+        </ng-template>
+      </div>
+  
+    </div>
+  </nav>
+  
+  
+  <div class="row" style="width: 3000px; padding-top: 50px; padding-left: 90px; ">
+    <div class="col-md-12">
+  <!-- <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input>
+  </mat-form-field> -->
+  
+       
+             <div class="card" class="text-center">
+              
+              
+                <table class="mat-elevation-z8" style="width: 1300px; ">
+                
+                  <thead style="background-color: rgb(110, 169, 196);">
+                    <ng-container>
+                      <th>id</th>
+                      <th>nom</th>
+                      <th>offer</th>
+                      <th>rate</th>
+                      <th>duree</th>
+                      
+                      <th>action</th>
+                    </ng-container>
+                  </thead>
+                  <tbody>
+                    
+                      <tr *ngFor='let o of listCollaborators | paginate :{itemsPerPage:tableSize , currentPage :page , totalItems : count} ; let i index '>
+                        <td>{{o.id}}</td>
+                        <td>{{o.nom}}</td>
+                        <td>{{o.offre}}</td>
+                        <td><ngb-rating [(rate)]="o.rate">
+                          <ng-template let-fill="fill" let-index="index">
+                            <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+                          </ng-template>
+                        </ngb-rating>
+                      </td>
+                        <td>{{o.duree}}</td>
+                        <td>
+                          <button mat-icon-button  color="primary"  data-toggle="mymodal" (click)="open(mymodal)">
+                            <mat-icon>edit</mat-icon>
+                          </button>
+                          <ng-template #mymodal let-modal>
+                            <div class="modal-header">
+                              
+                              <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                                <span aria-hidden="true">×</span>
+                              </button>
+                            </div>
+                            <div class="modal-body">
+                              <form>
+                                <div>
+                                  <div class="form-group">
+                                    <label>name</label>
+                                    <input type="text" class="form-control" id="name" required [(ngModel)]="o.name" name="name" [ngModelOptions]="{standalone : true}">
+                                  </div>
+                
+                                  <div class="form-group">
+                                    <label>offer</label>
+                                    <input type="text" class="form-control" id="offre" required [(ngModel)]="o.offre" name="offre"[ngModelOptions]="{standalone : true}">
+                                  </div>
+                
+                                  <!-- <div class="form-group">
+                                    <label>rate</label> -->
+                                    <!-- <td>
+                                    <ngb-rating [(rate)]="o.rate" class="form-control" >
+                                      <ng-template let-fill="fill" let-index="index">
+                                        <span class="star" [class.filled]="fill === 100" [class.bad]="index < 3">&#9733;</span>
+                                      </ng-template>
+                                    </ngb-rating>
+                                  </td> -->
+                                    <!-- <input type="number" class="form-control" id="rate" required  [(ngModel)]="o.rate"  name="rate" [ngModelOptions]="{standalone : true}">
+                                  </div> -->
+                
+                                  <div class="form-group">
+                                    <label>duration</label>
+                                    <input type="text" class="form-control" id="duration" required [(ngModel)]="o.duration" name="duration" [ngModelOptions]="{standalone : true}">
+                                  </div>
+            
+                
+                                  <button class="btn btn-success" (click)="editcollaborator(o)" (click)="modal.close('Save click')">edit</button>
+                
+                                </div>
+                              </form>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+                            </div>
+                          </ng-template>
+                          <button mat-icon-button  color="warn"  (click)="deletecollaborator(o.id)">
+                            <mat-icon>delete</mat-icon>
+                          </button>
+                        </td>
+                
+                      </tr>
+                   
+                  </tbody>
+                
+                
+                </table>
+                
+   
+  
+                 
+             </div>
+       </div>
+  </div>
+  
+  <pagination-controls 
+  previousLabel="prev"
+  nextLabel="next"
+  (pageChange)="onTableDataChange($event)"
+  >
+  </pagination-controls>

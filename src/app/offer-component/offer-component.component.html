@@ -1,0 +1,259 @@
+
+ 
+<nav  class="navbar navbar-light" style="background-color: #e3f2fd;">
+  <a [routerLink]="['/login']"></a>
+            
+  <div class="container-fluid">
+    <h1 style="color: darkcyan;">offers list</h1>
+    <div class="d-flex">
+      <button class="btn btn-info"  (click)="open(mymodal)"> Add new offer</button>
+           
+      <ng-template #mymodal let-modal>
+        <div class="modal-header">
+         
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+         
+            <form class="example-form">
+            
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="fill">
+                  <mat-label> title</mat-label>
+                  <textarea matInput placeholder="" type="text" class="form-control" required [(ngModel)]="offer.title" name="title"></textarea>
+                </mat-form-field>
+              </div>
+            
+              
+            
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>description</mat-label>
+                <textarea matInput placeholder=""  type="text" class="form-control" id="description" required [(ngModel)]="offer.description"  name="description"></textarea>
+                </mat-form-field>
+              </div>
+            
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>location</mat-label>
+                <textarea  matInput placeholder="" type="text" class="form-control" id="location" required [(ngModel)]="offer.location" name="location"></textarea>
+                </mat-form-field>
+              </div>
+             
+              <!-- Terminal -->
+              <mat-card style="margin-top: 50px;">
+                <div fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="100" fxFlex.lg="100" fxFlex.xl="100">
+              
+                  <mat-label>localisation</mat-label>
+                  <div fxLayout="row wrap" class="col-gap">
+                    <div fxFlex.xs="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50">
+                      <input ngx-google-places-autocomplete #placesRef="ngx-places" (onAddressChange)="handleAddressChange($event)" />
+                    </div>
+                    <div fxFlex.xs="50" fxFlex.sm="50" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50">
+                      <!-- Mapa -->
+                      <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom">
+                        <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
+                      </agm-map>
+                      <!-- Final Mapa -->
+                    </div>
+                  </div>
+              
+                </div>
+              
+              </mat-card>
+            
+              <div class="form-group">
+                <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>nbParticipants</mat-label>
+                <input matInput placeholder="" type="number" class="form-control" id="nbParticipants" required [(ngModel)]="offer.nbParticipants" name="nbParticipants">
+                </mat-form-field>
+              </div>
+             
+
+              <div class="form-group">   
+                <mat-form-field class="example-full-width" appearance="fill">            
+                <mat-label>Put the Date</mat-label>
+                <input  matInput placeholder="" type="date" class="form-control" required [(ngModel)]="offer.date" name="date"> 
+              </mat-form-field>               
+            </div>
+            <div class="form-group">
+              
+              <input class="form-control" type="file" (change)="onChange($event)">
+            
+              <button (click)="onUpload()" class="btn btn-success">
+                Upload
+              </button>
+              <div class="container text-center jumbotron" *ngIf="shortLink">
+                <h2> Visit Here</h2>
+                <a href="{{shortLink}}">{{shortLink}}</a>
+              </div>
+              <div class="container" *ngIf="loading">
+                <h3>Loading ...</h3>
+            </div>
+            </div>
+             
+         
+            <br>
+            <div style=" padding-left: 30px; ">
+              <button class="btn btn-success" (click)="addOffer(offer)" (click)="modal.close('Save click')">Add</button>
+            </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+        </div>
+      </ng-template>
+    </div>
+
+  </div>
+</nav>
+<div id="print-section" >
+
+<div class="row" style="width: 3000px; padding-top: 50px; padding-left: 90px; ">
+  <div class="col-md-12">
+<mat-form-field appearance="standard">
+  <mat-label>Filter</mat-label>
+  <input matInput  [(ngModel)]="title" placeholder="Ex. ium" #input>
+</mat-form-field>
+
+
+     
+           <div class="card" class="text-center">
+            
+            
+              <table class="mat-elevation-z8" style="width: 1300px; ">
+              
+                <thead style="background-color: rgb(110, 169, 196);">
+                  <ng-container>
+                    <th>id</th>
+                    <th>title</th>
+                    <th>date</th>
+                    <th>description</th>
+                    <th>location</th>
+                    <th>localisation</th>
+                    <th>nbParticipants</th>
+                    <th>piece jointe</th>
+                    <th>action</th>
+                  </ng-container>
+                </thead>
+
+
+                <tbody>
+                  <ng-container>
+                    <tr *ngFor='let o of listOffers| filter: title | paginate :{itemsPerPage:tableSize , currentPage :page , totalItems : count} ; let i index'>
+                      <td>{{o.id}}</td>
+                      <td>{{o.title}}</td>
+                      <td>{{o.date}}</td>
+                      <td>{{o.description}}</td>
+                      <td>{{o.location}}</td>
+                      <td>{{o.localisation}}</td>
+                      <td>{{o.nbParticipants}}</td>
+                      <td>{{shortLink}}</td>
+                      <td>
+                        <button mat-icon-button  color="primary" data-toggle="mymodal" (click)="open(mymodal)" >
+                           <mat-icon>edit</mat-icon>
+                           </button>
+                        <ng-template #mymodal let-modal>
+                          <div class="modal-header">
+                            
+                            <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                              <span aria-hidden="true">×</span>
+                            </button>
+                          </div>
+                          <div class="modal-body">
+                            <form>
+                              <div>
+                                <div class="form-group">
+                                  <label>title</label>
+                                  <input type="text" class="form-control" id="title" required [(ngModel)]="o.title" name="title">
+                                </div>
+              
+                                <div class="form-group">
+                                  <label>date</label>
+                                  <input type="date" class="form-control" id="date" required [(ngModel)]="o.date" name="date">
+                                </div>
+              
+                                <div class="form-group">
+                                  <label>description</label>
+                                  <input type="text" class="form-control" id="description" required [(ngModel)]="o.description"
+                                    name="description">
+                                </div>
+              
+                                <div class="form-group">
+                                  <label>location</label>
+                                  <input type="text" class="form-control" id="location" required [(ngModel)]="o.location"
+                                    name="location">
+                                </div>
+              
+                                <div class="form-group">
+                                  <label>nbParticipants</label>
+                                  <input type="number" class="form-control" id="nbParticipants" required
+                                    [(ngModel)]="o.nbParticipants" name="nbParticipants">
+                                </div>
+
+                                <div class="form-group">
+                                  <label>piece jointe</label>
+                                  <input class="form-control" type="file" (change)="onChange($event)"   >
+                                  <button (click)="onUpload()" class="btn btn-success" required [(ngModel)]="o.pieceJointe" name="pieceJointe">
+                                    Upload
+                                  </button>
+                                  <div class="container text-center jumbotron" *ngIf="shortLink">
+                                    <h2> Visit Here</h2>
+                                    <a href="{{shortLink}}">{{shortLink}}</a>
+                                  </div>
+                                  <div class="container" *ngIf="loading">
+                                    <h3>Loading ...</h3>
+                                </div>
+                                </div>
+              
+                                <button mat-icon-button  (click)="editoffer(o)" (click)="modal.close('Save click')" color="primary" >
+                                  <mat-icon>edit</mat-icon> 
+                                </button>
+              
+                              </div>
+                            </form>
+                          </div>
+                          <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+                          </div>
+                        </ng-template>
+                        <button mat-icon-button (click)="deleteoffer(o.id)" color="warn">
+                          <mat-icon>delete</mat-icon> 
+                        </button>
+                      </td>
+              
+                    </tr>
+                  </ng-container>
+                </tbody>
+              
+              
+              </table>
+              
+ 
+
+               
+           </div>
+           <svg id="clouds" alt="Gray Clouds Background" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
+            <path id="Path_39" data-name="Path 39" d="M2379.709,863.793c10-93-77-171-168-149-52-114-225-105-264,15-75,3-140,59-152,133-30,2.83-66.725,9.829-93.5,26.25-26.771-16.421-63.5-23.42-93.5-26.25-12-74-77-130-152-133-39-120-212-129-264-15-54.084-13.075-106.753,9.173-138.488,48.9-31.734-39.726-84.4-61.974-138.487-48.9-52-114-225-105-264,15a162.027,162.027,0,0,0-103.147,43.044c-30.633-45.365-87.1-72.091-145.206-58.044-52-114-225-105-264,15-75,3-140,59-152,133-53,5-127,23-130,83-2,42,35,72,70,86,49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33,61.112,8.015,113.854-5.72,150.492-29.764a165.62,165.62,0,0,0,110.861-3.236c47,94,178,113,251,33,31.385,4.116,60.563,2.495,86.487-3.311,25.924,5.806,55.1,7.427,86.488,3.311,73,80,204,61,251-33a165.625,165.625,0,0,0,120,0c51,13,108,15,157-5a147.188,147.188,0,0,0,33.5-18.694,147.217,147.217,0,0,0,33.5,18.694c49,20,106,18,157,5a165.625,165.625,0,0,0,120,0c47,94,178,113,251,33C2446.709,1093.793,2554.709,922.793,2379.709,863.793Z" transform="translate(142.69 -634.312)" fill="#eee"/>
+          </svg>
+     </div>
+</div>
+
+
+	
+</div>
+
+<button printTitle="Print Title" printSectionId="print-section" ngxPrint type="button" class="btn btn-outline-dark"  style="float:right; padding-right: 50px;padding-left: 50px;">
+  Print
+</button>
+
+<pagination-controls 
+previousLabel="prev"
+nextLabel="next"
+(pageChange)="onTableDataChange($event)"
+>
+</pagination-controls>
+
+
