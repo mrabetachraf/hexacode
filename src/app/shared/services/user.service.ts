@@ -28,7 +28,7 @@ export class UserService {
     }
     
     updateUser(value) {
-        return this.httpService.put<User>(this.REST_API_SERVER +"user/update", value);
+        return this.httpService.put<any>(this.REST_API_SERVER +"user/update", value);
     }
     addBadgeToUser(name: string): Observable<Badge> {
         return this.httpService.post<any>(this.REST_API_SERVER + "badge/addBadgeToUser/" + name,name);

@@ -30,6 +30,48 @@
         </div>
     </div>
     <div class="form-group">
+        <label for="headline">Headline</label>
+        <input type="text" class="form-control" formControlName="headline" id="headline" required ngDefaultControl [(ngModel)]="user.headline"
+            minlength="3" maxlength="20" />
+        <div class="alert-danger" *ngIf="formGroup.controls['headline'].errors">
+            <div *ngIf="formGroup.controls['headline'].errors['required'] && hasError">headline is required</div>
+            <div *ngIf="formGroup.controls['headline'].errors['minlength'] && hasError">
+                headline must be at least 3 characters
+            </div>
+            <div *ngIf="formGroup.controls['headline'].errors['maxlength'] && hasError">
+                headline must be at most 20 characters
+            </div>
+        </div>
+    </div>
+    <div class="form-group" [hidden]="true" >
+        <label for="id">ID </label>
+        <input type="text" class="form-control" formControlName="id" id="id"  ngDefaultControl [(ngModel)]="user.id" required
+            minlength="3" maxlength="20" />
+        <div class="alert-danger" *ngIf="formGroup.controls['name'].errors">
+            <div *ngIf="formGroup.controls['name'].errors['required'] && hasError">name is required</div>
+            <div *ngIf="formGroup.controls['name'].errors['minlength'] && hasError">
+                name must be at least 3 characters
+            </div>
+            <div *ngIf="formGroup.controls['name'].errors['maxlength'] && hasError">
+                name must be at most 20 characters
+            </div>
+        </div>
+    </div>
+    <div class="form-group" [hidden]="true">
+        <label for="points">Points </label>
+        <input type="number" class="form-control" formControlName="points" id="points"  ngDefaultControl [(ngModel)]="user.points" required
+            minlength="3" maxlength="20" />
+        <div class="alert-danger" *ngIf="formGroup.controls['points'].errors">
+            <div *ngIf="formGroup.controls['points'].errors['required'] && hasError">name is required</div>
+            <div *ngIf="formGroup.controls['points'].errors['minlength'] && hasError">
+                points must be at least 3 characters
+            </div>
+            <div *ngIf="formGroup.controls['points'].errors['maxlength'] && hasError">
+                points must be at most 20 characters
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
         <label for="email">Email</label>
         <input type="email" class="form-control" formControlName="email" id="email" required ngDefaultControl [(ngModel)]="user.email"
             minlength="5" maxlength="50" />
@@ -105,9 +147,9 @@
   
 
     <div class="form-group">
-        <button class="btn btn-info" (click)="edit(formGroup)" (click)="update(true)">Save changes</button>
+        <button class="btn btn-info" (click)="edit(formGroup)" (click)="update(true)" >Save changes</button>
     </div>
-
+  
     <div class="alert alert-warning" *ngIf="hasError">
         Edit failed!<br />{{ errorMessage }}
     </div>

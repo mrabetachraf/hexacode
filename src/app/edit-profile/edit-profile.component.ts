@@ -34,6 +34,9 @@ export class EditProfileComponent implements OnInit {
       contact_info: ["", [Validators.required]],
       education: ["", [Validators.required]],
       location: ["", [Validators.required]],
+      id: ["", [Validators.required]],
+      points: ["", [Validators.required]],
+      headline: ["", [Validators.required]],
 
     });
   }
@@ -49,8 +52,6 @@ export class EditProfileComponent implements OnInit {
       console.log(res);
 
     
-    
-   
        });
     }
     update(value:boolean) {
